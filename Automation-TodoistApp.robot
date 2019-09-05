@@ -8,10 +8,11 @@ Library	         Collections
 Library	         RequestsLibrary
 Library          JSONLibrary
 Library          BuiltIn
-Resource
+#Resource        file.py
 
 
 *** Variables ***
+
 ${base_URL}                           https://api.todoist.com/rest
 ${Post_headers}                       Create Dictionary  Content-Type: application/json  X-Request-Id: $(uuidgen)  Authorization: 4d7946409e6df1c69585372679eeed02a3cd706a
 ${Post_body}                          Create dictionary  name="NewProject"
@@ -56,14 +57,14 @@ Login into the Mobile Application
     # id=com.todoist:id/btn_log_in
      AppiumLibrary.Click Element    ${btn_log_in}
      sleep   10s
-
+# Challenge1 : Took time to Bypass New version Update alert
 Create test project via API
     create session  Post_New_Project_details   ${base_URL} headers=${Post_headers}  cookies=None
     log to console  ${Post_headers}
     ${response}=  RequestsLibrary.Post Request  alias=Post_New_Project_details  uri=${base_URL}/v1/projects/ data=${Post_body} headers=${Post_headers}  params=None
     log to console   ${response.status_code}
-   log to console    ${response.content}
-
+    log to console    ${response.content}
+# Challenge2 : Took time to resolve the script errors(Positional Arguments,Library support  etc)
 Verify on mobile that project is created
     # accessibility id=Change the current view
     AppiumLibrary.Click Element    ${Menu_bar}
@@ -72,7 +73,7 @@ Verify on mobile that project is created
     #Assertion: Check the Project has been created succesfully
     AppiumLibrary.page should contain text   NewProject
     Close application
-
+# Challenge3 : Took time to resolve Script errors
 Create Task via mobile application in your test project
       # Id add task
       AppiumLibrary.Click Element  ${Add_task}
@@ -92,6 +93,24 @@ Verify that task created succesfully through API
     log to console  ${response.content}
     #Assertion:Checking Json content has matching value for new task name,otherwise Test Fails
     ${response.content}  should contain match  Test_newtask
+# Challenge4 : Took time to resolve Script errors on SSL
+Open test Project
+
+    # Go to the Mobile app
+
+
+Create Test task
+   # Go to the test complete test task
+
+
+Complete test task
+   # Complete the test task by clicking
+
+
+Mobile:Verify that test task apperas in your project
+   # Open mobile app and verify test case
+
+Reopen test task via Api
 *** Test Cases ***
 Test1:Create Project
     Create test project via API
@@ -103,7 +122,7 @@ Test2:Create Task via Mobile app
    Create Task via mobile application in your test project
    Verify that task created succesfully through API
 
-#Test3:Reopen Task
+#Test3:Reopen Task (InComplete)
     Login into the Mobile Application
     Open test Project
     Create Test task
