@@ -174,7 +174,7 @@ Test2:Create Task via Mobile app
    Create Task via mobile application in your test project
    Verify that task created succesfully through API
 
-Test3:Reopen Task (InComplete)
+Test3:Reopen Task
     Login into the Mobile Application
     Open test Project
     Create Test task
