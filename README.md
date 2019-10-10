@@ -1,4 +1,4 @@
-# SSW-HomeTest
+# SSW- Samples
 Answer for the Home Test (SStudio)
 Reference docs: 
 1.Environment Set up guides from Google
